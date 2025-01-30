@@ -1,0 +1,96 @@
+package org.example;
+
+import java.util.ArrayList;
+
+public class Estudiante {
+
+    public static int contadorEstudiante = 0;
+    public static final String CORREO = "^[A-Za-z0-9+_.-]+@alu.edu.gva.es$";
+    private String nombre;
+    private String curso;
+    private int nia;
+    private String email;
+    private ArrayList<Libro> librosPrestados;
+
+    public Estudiante(String nombre, String curso, String email){
+        this.nombre = nombre;
+        this.curso = curso;
+        this.email = email;
+        contadorEstudiante++;
+        nia = contadorEstudiante;
+        librosPrestados = new ArrayList<>();
+    }
+
+    public Estudiante (String nombre){
+        this.nombre = nombre;
+        contadorEstudiante++;
+        this.nia = contadorEstudiante;
+    }
+
+    public static int obtenerTotalEstudiantes(){
+        return contadorEstudiante;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    public String getNombre(){
+        return nombre;
+    }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
+    public String getCurso(){
+        return curso;
+    }
+
+    public void setCurso(String curso){
+        this.curso = curso;
+    }
+
+    public int getNia(){
+        return nia;
+    }
+
+    public ArrayList<Libro> getLibrosPrestados(){
+        return librosPrestados;
+    }
+
+    public void setLibrosPrestados(ArrayList<Libro> librosPrestados){
+        this.librosPrestados = librosPrestados;
+    }
+
+    public void anyadirLibro(Libro libro){
+        librosPrestados.add(libro);
+    }
+
+    public void borrarLibro(Libro libro){
+        librosPrestados.remove(libro);
+    }
+
+    @Override
+    public String toString(){
+
+        if(!librosPrestados.isEmpty()){
+            return "Estudiante : [nombre=" + getNombre() + " curso=" + getCurso() + " nia=" + getNia() + " email=" + getEmail() + " Libros Prestados =" + librosPrestados + " ]";
+        }else{
+            return "Estudiante : [nombre=" + getNombre() + " curso=" + getCurso() + " nia=" + getNia() + " email=" + getEmail() + " ]";
+        }
+
+    }
+
+    public static boolean validarEmail(String email){
+        if(email.matches(CORREO)){
+            return true;
+        }
+
+        return false;
+    }
+}
