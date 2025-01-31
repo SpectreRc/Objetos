@@ -1,0 +1,80 @@
+package org.example.casa;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Habitacion {
+
+    Scanner entrada = new Scanner(System.in);
+    private String nombre;
+    private double metrosCuadrados;
+    private Electrodomestico electrodomestico;
+    private ArrayList<Electrodomestico> electrodomesticos;
+
+    public Habitacion(String nombre, double metrosCuadrados) {
+        this.nombre = nombre;
+        this.metrosCuadrados = metrosCuadrados;
+        setElectrodomestico();
+        this.electrodomesticos = new ArrayList<>();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(){
+        this.nombre = nombre;
+    }
+
+    public double getMetrosCuadrados() {
+        return metrosCuadrados;
+    }
+
+    public void setMetrosCuadrados(double metrosCuadrados) {
+        this.metrosCuadrados = metrosCuadrados;
+    }
+
+    public Electrodomestico getElectrodomestico() {
+        return electrodomestico;
+    }
+
+    public void setElectrodomestico() {
+        System.out.println("Introduce el electrodomestico: ");
+        String nombre = entrada.next();
+        System.out.println("Consumo del electrodomestico: ");
+        int consumo = entrada.nextInt();
+        this.electrodomestico = new Electrodomestico(nombre, consumo);
+    }
+
+    public void agregarElectrodomesticos(String nombre, double consumo) {
+        for(Electrodomestico ele : electrodomesticos){
+            if(ele.getNombre().equals(nombre)){
+                System.out.println("El electrodoméstico " + nombre + " ya existe.");
+                return;
+            }
+        }
+        Electrodomestico electrodomestico = new Electrodomestico(nombre, consumo);
+        electrodomesticos.add(electrodomestico);
+    }
+
+    public void mostrarElectrodomesticos() {
+        System.out.println("La habitación tiene " + electrodomesticos.size() + " electrodomesticos.");
+        for(Electrodomestico ele : electrodomesticos){
+            System.out.println("- " + ele.getNombre() + " (" + ele.getConsumo() + " m2)");
+        }
+        System.out.println("Electrodomestico :" + this.electrodomestico);
+    }
+
+    public double calcularConsumo(){
+        double contador = 0;
+        for(Electrodomestico ele : electrodomesticos){
+            contador+=ele.getConsumo();
+        }
+        return contador;
+    }
+
+    @Override
+    public String toString() {
+        return "Habitación : [ nombre = " + getNombre() + " metros = " + getMetrosCuadrados() + " ]";
+    }
+}
