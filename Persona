@@ -1,0 +1,93 @@
+package org.example;
+
+public class Persona {
+
+    private String nombre;
+    private String apellido;
+    private String dni;
+    private char sexo;
+    private int edad;
+    private String ciudad;
+    private String profesion;
+
+    public Persona(){
+    }
+
+    public Persona(String nombre, String apellido, String dni, char sexo, int edad, String ciudad, String profesion){
+       setNombre(nombre);
+       this.apellido = apellido;
+       this.dni = dni;
+       this.sexo = sexo;
+       this.edad = edad;
+       this.ciudad = ciudad;
+       this.profesion = profesion;
+    }
+
+    public String getNombre(){
+        return nombre;
+    }
+
+    public void setNombre(String nombre){
+        if(!nombre.equalsIgnoreCase("Messi")){
+            this.nombre = nombre;
+        }
+    }
+
+    public String getApellido(){
+        return apellido;
+    }
+
+    public void setApellido(String apellido){
+        this.apellido = apellido;
+    }
+
+    public String getDni(){
+        return dni;
+    }
+
+    public void setDni(String dni){
+        this.dni = dni;
+    }
+
+    public char getSexo(){
+        return sexo;
+    }
+
+    public void setSexo(char sexo){
+        this.sexo = sexo;
+    }
+
+    public int getEdad(){
+        return edad;
+    }
+
+    public void setEdad(int edad){
+        this.edad = edad;
+    }
+
+    public String getCiudad(){
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad){
+        this.ciudad = ciudad;
+    }
+
+    public String getProfesion(){
+        return profesion;
+    }
+
+    public void setProfesion(String profesion){
+        this.profesion = profesion;
+    }
+
+    public String concatenar(){
+        return this.nombre + " " + this.apellido;
+    }
+
+    public void mostrarInfo(){
+        System.out.println(this.nombre + " " + this.apellido + " " + this.dni + " " + this.sexo + " " + this.edad + " " + this.ciudad + " " + this.profesion);
+    }
+
+
+}
