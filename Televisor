@@ -1,0 +1,39 @@
+package org.example;
+
+public class Televisor {
+
+    private int canal;
+    private int volumen;
+
+    public Televisor(){
+    }
+
+    public Televisor(int canal){
+        this.canal = canal;
+    }
+
+    public void subirCanal(){
+        canal++;
+    }
+
+    public void bajarCanal(){
+        canal--;
+    }
+
+    public int getCanal(){
+        return canal;
+    }
+
+    public void setCanal(int canal) {
+        this.canal = canal;
+    }
+
+    public int getVolumen(){
+        return volumen;
+    }
+
+    public void setVolumen(int volumen){
+        this.volumen = volumen;
+    }
+
+}
