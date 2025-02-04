@@ -1,0 +1,30 @@
+package org.example.programa;
+
+import java.util.ArrayList;
+
+public class Cadena {
+
+    private String nombre;
+    private ArrayList<Programa> programas;
+
+    public Cadena(String nombre){
+        this.nombre = nombre;
+        this.programas = new ArrayList<>();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "Cadena{" +
+                "nombre='" + nombre + '\'' +
+                ", programas=" + programas +
+                '}';
+    }
+}
