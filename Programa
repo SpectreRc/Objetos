@@ -1,0 +1,105 @@
+package org.example.programa;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Programa {
+
+    Scanner entrada = new Scanner(System.in);
+    private String nombre;
+    private Cadena cadena;
+    private int temporadas = 0;
+    private ArrayList<Empleados> listaEmpleados;
+    private ArrayList<Invitados> listaInvitados;
+    private Empleados director = null;
+
+    public Programa(String nombre, Cadena cadena, int temporadas){
+        this.nombre = nombre;
+        this.cadena = cadena;
+        this.temporadas = temporadas;
+        this.listaEmpleados = new ArrayList<>();
+        this.listaInvitados = new ArrayList<>();
+        setDirector();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Cadena getCadena() {
+        return cadena;
+    }
+
+    public void setCadena(Cadena cadena) {
+        this.cadena = cadena;
+    }
+
+    public int getTemporadas() {
+        return temporadas;
+    }
+
+    public void setTemporadas(int temporadas) {
+        this.temporadas = temporadas;
+    }
+
+    public Empleados getDirector(){
+        return director;
+    }
+
+    public void setDirector(){
+        System.out.println("Introduce el director: ");
+        String nombre = entrada.next();
+        System.out.println("Edad del director: ");
+        int edad = entrada.nextInt();
+        this.director = new Empleados(nombre, edad);
+    }
+
+    public void insertarEmpleado(String nombre) {
+        for(Empleados emp : listaEmpleados){
+            if(emp.getNombre().equals(nombre)){
+                System.out.println("El empleado es " + nombre);
+                return;
+            }
+        }
+        Empleados empleados = new Empleados();
+        listaEmpleados.add(empleados);
+    }
+
+    public boolean getListaEmpleados() {
+
+        return true;
+    }
+
+    public void insertarInvitado(String nombre) {
+        for(Invitados inv : listaInvitados){
+            if(inv.getNombre().equals(nombre)){
+                System.out.println("El empleado es " + nombre);
+                return;
+            }
+        }
+        Invitados invitados = new Invitados(nombre);
+        listaInvitados.add(invitados);
+    }
+
+    public boolean getListaInvitados() {
+
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Programa{" +
+                "entrada=" + entrada +
+                ", nombre='" + nombre + '\'' +
+                ", cadena=" + cadena +
+                ", temporadas=" + temporadas +
+                ", listaEmpleados=" + listaEmpleados +
+                ", listaInvitados=" + listaInvitados +
+                ", director=" + director +
+                '}';
+    }
+}
