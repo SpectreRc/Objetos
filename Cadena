@@ -1,27 +1,35 @@
-package org.example.programa;
+package org.example.objetos;
 
 import java.util.ArrayList;
 
-public class Cadena {
+public class Cadena { //Defino la clase cadena
 
-    private String nombre;
-    private ArrayList<Programa> programas;
+    private String nombre; //Atributo de tipo String que almacena el nombre de la cadena
+    private ArrayList<Programa> programas; //Atributo de tipo ArrayList que almacena una lista de objetos asociados a la cadena
 
-    public Cadena(String nombre){
-        this.nombre = nombre;
-        this.programas = new ArrayList<>();
+    public Cadena(String nombre) { //Constructor de cadena que recibe "nombre" en tipo String
+        this.nombre = nombre; //Inicializa el atributo "nombre"
+        this.programas = new ArrayList<>(); //Inicializa la lista "programas" como una nueva lista vacía
     }
 
-    public String getNombre() {
+    public String getNombre() { //Metodo getter que devuelve el valor del atributo "nombre"
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre) { //Metodo setter que asigna un valor al atributo "nombre"
         this.nombre = nombre;
     }
 
+    public void insertarPrograma(Programa programa) { //Recibe "Programa" como parámetro y lo mete en la lista "programas"
+        programas.add(programa);
+    }
+
+    public ArrayList<Programa> getProgramas() { //Devuelve la lista "programas" permitiendo acceder a todos los programas asociados a la cadena
+        return programas;
+    }
+
     @Override
-    public String toString() {
+    public String toString() { //Devuelve la cadena de texto para que lo podamos leer
         return "Cadena{" +
                 "nombre='" + nombre + '\'' +
                 ", programas=" + programas +
