@@ -1,27 +1,27 @@
-package org.example.programa;
+package org.example.objetos;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Programa {
+public class Programa { //Defino la clase programa
 
-    Scanner entrada = new Scanner(System.in);
-    private String nombre;
-    private Cadena cadena;
-    private int temporadas = 0;
-    private ArrayList<Empleados> listaEmpleados;
-    private ArrayList<Invitados> listaInvitados;
-    private Empleados director = null;
+    Scanner entrada = new Scanner(System.in); //Para leer la entrada del teclado
+    private String nombre; //Atributo que guarda el nombre del programa
+    private Cadena cadena; //Atributo que referencia el objeto Cadena asociado al programa
+    private int temporadas = 0; //Atributo que guarda el número de temporadas del programa. Se inicializa a 0
+    private ArrayList<Empleados> listaEmpleados; //Lista que almacena los empleados
+    private ArrayList<Invitados> listaInvitados; //Lista que almacena los invitados
+    private Empleados director = null; //Atributo que almacena el director del programa
 
-    public Programa(String nombre, Cadena cadena, int temporadas){
-        this.nombre = nombre;
-        this.cadena = cadena;
-        this.temporadas = temporadas;
-        this.listaEmpleados = new ArrayList<>();
-        this.listaInvitados = new ArrayList<>();
-        setDirector();
+    public Programa(String nombre, Cadena cadena, int temporadas){ //Constructor que recibe el nombre del programa, la cadena de televisión asociada y el número de temporadas
+        this.nombre = nombre; //Inicializa el atributo "nombre"
+        this.cadena = cadena; //Inicializa el atributo "cadena"
+        this.temporadas = temporadas; //Inicializa el atributo "temporadas"
+        this.listaEmpleados = new ArrayList<>(); //Inicializa las listas de empleados
+        this.listaInvitados = new ArrayList<>(); //Inicializa las listas de invitados
+        setDirector(); //Se llama a este metodo para establecer un director
     }
-
+    //Métodos getter y setter para acceder y modificar los valores de los atributos de la clase "Programa" que permiten obtener o cambiar el nombre, la cadena, las temporadas y el director.
     public String getNombre() {
         return nombre;
     }
@@ -50,15 +50,19 @@ public class Programa {
         return director;
     }
 
-    public void setDirector(){
-        System.out.println("Introduce el director: ");
-        String nombre = entrada.next();
+    public void setDirector(){ //Solicita al usuario los datos del director y crea un objeto "Empleados" para asignarlo al atributo director
+        System.out.println("Nombre del director: ");
+        String nombre = entrada.nextLine();
+        System.out.println("Id del director: ");
+        String id = entrada.nextLine();
+        System.out.println("Cargo del director: ");
+        String cargo = entrada.nextLine();
         System.out.println("Edad del director: ");
         int edad = entrada.nextInt();
-        this.director = new Empleados(nombre, edad);
+        this.director = new Empleados(id, nombre, cargo, edad);
     }
 
-    public void insertarEmpleado(String nombre) {
+    public void insertarEmpleado(String nombre){ //Verifica si un empleado con el nombre dado ya existe en la lista de empleados y si no existe, se crea un nuevo objeto "Empleados" y se agrega a la lista
         for(Empleados emp : listaEmpleados){
             if(emp.getNombre().equals(nombre)){
                 System.out.println("El empleado es " + nombre);
@@ -69,29 +73,73 @@ public class Programa {
         listaEmpleados.add(empleados);
     }
 
-    public boolean getListaEmpleados() {
-
-        return true;
+    public ArrayList<Empleados> getListaEmpleados(){ //Devuelve la lista de empleados del programa
+        return listaEmpleados;
     }
 
-    public void insertarInvitado(String nombre) {
+    public void insertarInvitado(String nombre, String profesion, int temporada){ //Verifica si un empleado con el nombre dado ya existe en la lista de invitados y si no existe, se crea un nuevo objeto "Invitados" y se agrega a la lista
         for(Invitados inv : listaInvitados){
             if(inv.getNombre().equals(nombre)){
-                System.out.println("El empleado es " + nombre);
+                System.out.println("El invitado es " + nombre);
                 return;
             }
         }
-        Invitados invitados = new Invitados(nombre);
+        Invitados invitados = new Invitados(nombre, profesion, temporada);
         listaInvitados.add(invitados);
     }
 
-    public boolean getListaInvitados() {
+    public boolean buscarInvitado(String nombre){ //Verifica si un invitado con el nombre dado existe en la lista "listaInvitados". Si existe, devuelve true, de lo contrario, devuelve false
+        for (Invitados inv : listaInvitados) {
+            if (inv.getNombre().equalsIgnoreCase(nombre)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-        return true;
+    public int vecesInvitado(String nombre){ //Mide cuantas veces ha ido el Invitado al programa
+        int contador = 0;
+        for (Invitados inv : listaInvitados) {
+            if (inv.getNombre().equalsIgnoreCase(nombre)) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    public void rastrearInvitado(String nombre){ //Usando el anterior metodo, imprime las veces que ha ido un Invitado al Programa, además de mostrar también en qué fechas y temporadas
+        int cuantas = vecesInvitado(nombre);
+        if (cuantas == 0) {
+            System.out.println("El invitado " + nombre + " no ha asistido al programa.");
+            return;
+        }
+        System.out.println(nombre + " ha sido invitado " + cuantas + " veces.");
+        System.out.println("Fechas y temporadas en las que asistió:");
+        for (Invitados inv : listaInvitados) {
+            if (inv.getNombre().equalsIgnoreCase(nombre)) {
+                System.out.println("- Temporada " + inv.getTemporada() + ", Fecha: " + inv.getFecha_visita());
+            }
+        }
+    }
+
+    public void invitadosTemporada(int temporada){ //Muestra todos los invitados de una temporada, indicando cuántos invitados han asistido y sus profesiones.
+        int contador = 0;
+        System.out.println("Invitados de la temporada " + temporada + ":");
+        for (Invitados inv : listaInvitados) {
+            if (inv.getTemporada() == temporada) {
+                System.out.println("- " + inv.getNombre() + " (" + inv.getProfesion() + ")");
+                contador++;
+            }
+        }
+        System.out.println("Total de invitados en la temporada " + temporada + ": " + contador);
+    }
+
+    public ArrayList<Invitados> getListaInvitados(){ //Devuelve la lista de invitados del programa
+        return listaInvitados;
     }
 
     @Override
-    public String toString() {
+    public String toString(){ //Devuelve la cadena de texto para que lo podamos leer
         return "Programa{" +
                 "entrada=" + entrada +
                 ", nombre='" + nombre + '\'' +
