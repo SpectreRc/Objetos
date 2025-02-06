@@ -1,24 +1,39 @@
-package org.example.programa;
+package org.example.objetos;
 
 public class AppProgramas {
 
     public static void main (String[] args){
-        //creamos una cadena de tv
         Cadena antena3 = new Cadena("Antena 3");
         System.out.println(antena3);
-        //creamos un programa
+
         Programa el_hormiguero = new Programa("El Hormiguero",antena3,1);
         System.out.println(el_hormiguero);
         System.out.println(antena3);
-        //insertamos empleados en el programa
+
         el_hormiguero.insertarEmpleado("Pablo Motos");
-        System.out.println(el_hormiguero);
-        //ver empleados del programa
-        System.out.println(el_hormiguero.getListaEmpleados());
-        //insertamos invitados en el programa
-        el_hormiguero.insertarInvitado("Aitana");
-        //ver invitados del programa
-        System.out.println(el_hormiguero.getListaInvitados());
+        el_hormiguero.insertarEmpleado("Pedro Sanchez");
+        el_hormiguero.insertarEmpleado("Patricia Benavente");
+        System.out.println("Lista de empleados: " + el_hormiguero.getListaEmpleados());
+
+        el_hormiguero.insertarInvitado("Aitana", "Cantante", 1);
+        el_hormiguero.insertarInvitado("Melendi", "Cantante", 2);
+        el_hormiguero.insertarInvitado("KidKeo", "Filosofo", 2);
+        System.out.println("Lista de invitados: " + el_hormiguero.getListaInvitados());
+
+        String nombreBuscar = "Aitana";
+        if (el_hormiguero.buscarInvitado(nombreBuscar)) {
+            System.out.println("El invitado " + nombreBuscar + " ha sido encontrado.");
+        } else {
+            System.out.println("El invitado " + nombreBuscar + " no existe.");
+        }
+
+        String cuantasVecesViene = "Aitana";
+        int veces = el_hormiguero.vecesInvitado(cuantasVecesViene);
+        System.out.println(cuantasVecesViene + " ha sido invitado " + veces + " vez/veces.");
+
+        el_hormiguero.invitadosTemporada(1);
+
+        el_hormiguero.rastrearInvitado("Aitana");
 
     }
 }
