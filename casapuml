@@ -1,0 +1,43 @@
+@startuml
+
+package org.example.casa {
+
+    class Casa {
+        - String direccion
+        - ArrayList<Habitacion> habitaciones
+        - Propietario propietario
+        + Casa(String direccion)
+        + void agregarHabitacion(String nombre, double metros)
+        + void mostrarHabitaciones()
+        + Habitacion getHabitacionMasGrande()
+        + Propietario getPropietario()
+        + void setPropietario()
+        + void eliminarHabitacion(String nombre)
+        + String toString()
+    }
+
+    class Habitacion {
+        - String nombre
+        - double metrosCuadrados
+        + Habitacion(String nombre, double metros)
+        + String getNombre()
+        + double getMetrosCuadrados()
+        + void setMetrosCuadrados(double metrosCuadrados)
+    }
+
+    class Propietario {
+        - String nombre
+        - int edad
+        + Propietario(String nombre, int edad)
+        + String getNombre()
+        + void setNombre(String nombre)
+        + int getEdad()
+        + void setEdad(int edad)
+    }
+
+    Casa "1" *-- "*" Habitacion : contiene >
+    Casa "1" -- "1" Propietario : tiene >
+
+}
+
+@enduml
