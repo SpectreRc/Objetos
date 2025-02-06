@@ -1,17 +1,17 @@
-package org.example.programa;
+package org.example.objetos;
 
 import java.util.Scanner;
 
-public class Empleados {
+public class Empleados { //Defino la clase empleados
 
-    Scanner entrada = new Scanner(System.in);
-    private String id;
-    private String nombre;
-    private String cargo;
-    private int edad;
-    private Empleados director;
+    Scanner entrada = new Scanner(System.in); //Para leer la entrada del teclado
+    private String id; //Atributo que guarda el id del empleado
+    private String nombre; //Atributo que guarda el nombre del empleado
+    private String cargo; //Atributo que guarda el cargo del empleado
+    private int edad; //Atributo que guarda la edad del empleado
+    private Empleados director; //Atributo que guarda el director del empleado
 
-    public Empleados(String id, String nombre, String cargo, int edad){
+    public Empleados(String id, String nombre, String cargo, int edad){ //Constructor que recibe los datos del empleado (ID, nombre, cargo y edad) y los asigna a los atributos correspondientes.
         this.id = id;
         this.nombre = nombre;
         this.cargo = cargo;
@@ -19,6 +19,10 @@ public class Empleados {
         setDirector();
     }
 
+    public Empleados() { //Constructor vacío, que no recibe parámetros
+
+    }
+    //Métodos getter y setter que permiten obtener (getter) y modificar (setter) los valores de los atributos id, nombre, cargo, y edad
     public String getId() {
         return id;
     }
@@ -55,16 +59,20 @@ public class Empleados {
         return director;
     }
 
-    public void setDirector() {
-        System.out.println("Introduce el director: ");
-        String nombre = entrada.next();
+    public void setDirector(){ //Solicita al usuario los datos del director y crea un objeto Empleados para asignarlo al atributo director
+        System.out.println("Nombre del director: ");
+        String nombre = entrada.nextLine();
+        System.out.println("Id del director: ");
+        String id = entrada.nextLine();
+        System.out.println("Cargo del director: ");
+        String cargo = entrada.nextLine();
         System.out.println("Edad del director: ");
         int edad = entrada.nextInt();
-        this.director = new Empleados(nombre, edad);
+        this.director = new Empleados(id, nombre, cargo, edad);
     }
 
     @Override
-    public String toString() {
+    public String toString() { //Devuelve la cadena de texto para que lo podamos leer
         return "Empleados{" +
                 "entrada=" + entrada +
                 ", id='" + id + '\'' +
