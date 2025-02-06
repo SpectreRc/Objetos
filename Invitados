@@ -1,21 +1,24 @@
-package org.example.programa;
+package org.example.objetos;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.Scanner;
 
-public class Invitados {
+public class Invitados { //Defino la clase invitados
 
-    private String nombre;
-    private String profesion;
-    private LocalDate fecha_visita;
-    private int temporada;
+    Scanner entrada = new Scanner(System.in); //Para leer la entrada del teclado
+    private String nombre; //Atributo que guarda el nombre del invitado
+    private String profesion; //Atributo que guarda la profesion del invitado
+    private LocalDate fecha_visita; //Atributo que guarda la fecha de visita del invitado
+    private int temporada; //Atributo que guarda la temporada en la que viene el invitado
 
-    public Invitados(String nombre, String profesion, LocalDate fecha_visita, int temporada){
+    public Invitados(String nombre, String profesion, int temporada){ //Constructor que recibe los datos del invitado: nombre, profesión y temporada. Luego, llama al metodo setFecha_visita() para asignar la fecha de la visita del invitado.
         this.nombre = nombre;
         this.profesion = profesion;
         setFecha_visita();
         this.temporada = temporada;
     }
-
+    //Métodos getter y setter que permiten obtener (getter) y modificar (setter) los valores de los atributos
     public String getNombre() {
         return nombre;
     }
@@ -36,9 +39,21 @@ public class Invitados {
         return fecha_visita;
     }
 
-    public void setFecha_visita() {
-        LocalDate fecha = LocalDate.of(2025, 03, 15);
-        this.fecha_visita = fecha_visita;
+    public void setFecha_visita() { //Pide al usuario que ingrese la fecha de la visita del invitado
+        System.out.println("Introduce el año de la visita:");
+        int year = entrada.nextInt();
+        System.out.println("Introduce el mes de la visita (1-12):");
+        int month = entrada.nextInt();
+        System.out.println("Introduce el día de la visita:");
+        int day = entrada.nextInt();
+        boolean fechaValida = false;
+        try {
+            this.fecha_visita = LocalDate.of(year, month, day);
+            fechaValida = true;
+        } catch (DateTimeException e) {
+            System.out.println("Fecha inválida, por favor introduce de nuevo.");
+        } //Si la fecha es válida, se asigna al atributo fecha_visita. Si la fecha no es válida, se lanza una excepción DateTimeException, y se muestra un mensaje pidiendo que el usuario ingrese una fecha válida.
+
     }
 
     public int getTemporada() {
@@ -49,30 +64,8 @@ public class Invitados {
         this.temporada = temporada;
     }
 
-    public void invitadosTemporada(int temporada){
-
-    }
-
-    public int vecesInvitado(String nombre){
-
-        return 0;
-    }
-
-    public void rastrearInvitado(String nombre){
-
-    }
-
-    public boolean buscarInvitado(String nombre){
-
-        return true;
-    }
-
-    public void invitadoAntes(String nombre){
-        
-    }
-
     @Override
-    public String toString() {
+    public String toString() { //Devuelve la cadena de texto para que lo podamos leer
         return "Invitados{" +
                 "nombre='" + nombre + '\'' +
                 ", profesion='" + profesion + '\'' +
