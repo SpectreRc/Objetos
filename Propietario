@@ -6,8 +6,8 @@ public class Propietario {
     private int edad;
 
     public Propietario(String nombre, int edad){
-        this.nombre = nombre;
-        this.edad = edad;
+        this.nombre=nombre;
+        this.edad=edad;
     }
 
     public String getNombre() {
