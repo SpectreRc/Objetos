@@ -1,0 +1,67 @@
+package org.example;
+
+import lombok.*;
+
+import java.util.ArrayList;
+
+/**
+ * Clase que representa un Instituto con estudiantes y cursos.
+ * @author Roberto Carrión García
+ * @version 1.0
+ */
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+public class Instituto {
+
+    private final String nombre;
+    private String poblacion;
+    private ArrayList<EstudianteInst> listaEstudiante;
+    private ArrayList<Curso> listaCurso;
+
+    /**
+     * Constructor de Instituto con un nombre y las listas de estudiantes y cursos. Si el nombre es null, se le pone "Instituto sin nombre" por defecto.
+     * @param nombre
+     */
+    public Instituto(String nombre){
+        if(nombre == null){
+            this.nombre = "Instituto sin nombre";
+        }else{
+            this.nombre = nombre;
+        }
+        listaEstudiante = new ArrayList<>();
+        listaCurso = new ArrayList<>();
+    }
+
+    /**
+     * Agrega un estudiante a la lista de estudiantes del instituto.
+     * @param estudiante
+     */
+    public void agregarEstudiante(EstudianteInst estudiante) {
+        if (estudiante != null) {
+            listaEstudiante.add(estudiante);
+        } else {
+            System.out.println("ERROR. No se puede agregar un estudiante nulo.");
+        }
+    }
+
+    /**
+     * Agrega un curso a la lista de cursos del instituto.
+     * @param curso
+     */
+    public void agregarCurso(Curso curso) {
+        if (curso != null){
+            for(Curso c: listaCurso){
+                if(c.getNombre().equals(curso.getNombre()) && c.getHoras() == curso.getHoras()){
+                    System.out.println("ERROR. Duplicado");
+                    return;
+                }
+            }
+            listaCurso.add(curso);
+            System.out.println("Curso agregado");
+        }else{
+            System.out.println("ERROR.");
+        }
+    }
+}
