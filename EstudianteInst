@@ -1,0 +1,21 @@
+package org.example;
+
+import lombok.*;
+
+/**
+ * Clase que representa a los estudiantes del instituto
+ * @author Roberto Carrión García
+ * @version 1.0
+ */
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Getter
+@Setter
+@ToString
+public class EstudianteInst {
+
+    @NonNull
+    private String nombre;
+    private int edad;
+    private Curso curso;
+}
