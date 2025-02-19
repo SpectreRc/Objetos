@@ -4,9 +4,9 @@ public abstract class MetodoPago {
 
     private double importe;
 
-    public MetodoPago(double importe){
+    public MetodoPago(){
         this.importe = importe;
     }
 
-    public abstract void procesarPago();
+    public abstract void procesarPago(double importe);
 }
