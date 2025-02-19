@@ -1,27 +1,34 @@
 package org.example.practica1;
 
-import java.util.ArrayList;
-
 public class TarjetaCredito extends MetodoPago{
 
     private String nro_tarjeta;
-    private ArrayList<TarjetaCredito> tipo;
+    private String tipo;
+    private static final String[] TIPO_VALIDO = {"VISA", "MASTERCARD", "MAESTRO"};
 
-    public TarjetaCredito(double importe, String nro_tarjeta) {
-        super(importe);
+    public TarjetaCredito(String nro_tarjeta, String tipo) {
         this.nro_tarjeta = nro_tarjeta;
-        tipo = new ArrayList<>();
+        this.tipo = tipo;
     }
 
     public void procesarPago(double importe) {
-        System.out.println("Procesando pago de " + importe + " € con tarjeta de crédito VISA");
+        System.out.println("Procesando pago de " + importe + " € con tarjeta de crédito " + tipo);
     }
 
-    public boolean validarTarjeta(String nro_tarjeta){
-        if (nro_tarjeta.length() != 16) {
-            System.out.println("ERROR. Tiene que ser de 16 caracteres");
-            return false;
+    public boolean validarTarjeta(){
+        if (nro_tarjeta.length() == 16 && validarTipo()) {
+            System.out.println("Tarjeta validada");
+            return true;
         }
-        return true;
+        return false;
+    }
+
+    public boolean validarTipo() {
+        for (String tipos : TIPO_VALIDO) {
+            if (tipos.equalsIgnoreCase(tipo)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
